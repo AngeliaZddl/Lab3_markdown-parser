@@ -1,6 +1,4 @@
 # Title
 
 [link1](https://something.com)
-[link2](https://something.com)
-[another longer link](https://example.com)
-[that is a link!](http://google.com)
+[link2](some-thing.html)
