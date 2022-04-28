@@ -12,6 +12,7 @@ public class MarkdownParse {
         ArrayList<String> list = new ArrayList<>();
         while (reader.hasNextLine()) {
             String currentLine = reader.nextLine();
+            if (currentLine.length() == 0) continue;
             // Ensure that line isn't an image
             if (currentLine.charAt(0) == '!') continue;
             int counter = 0;
