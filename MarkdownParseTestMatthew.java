@@ -21,7 +21,7 @@ public class MarkdownParseTestMatthew {
     public void testGetLinks() {
         try {
             List<String> actual = MarkdownParse.getLinks(new Scanner(new File("robert-test-1.md")));
-            List<String> expected = List.of("https://something.com", "some-thing.html");
+            List<String> expected = List.of("https://youtube.com");
             assertEquals(expected, actual);
         } catch (Exception e) {
             e.printStackTrace();
