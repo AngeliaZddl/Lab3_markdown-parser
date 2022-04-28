@@ -22,7 +22,7 @@ public class MarkdownParseTestRobert {
             assertEquals(expected, actual);
             List<String> actual2 = MarkdownParse.getLinks(new Scanner(new File("robert-test-2.md")));
             List<String> expected2 = List.of();
-            assertEquals(expected, actual2);
+            assertEquals(expected2, actual2);
         } catch (Exception e) {
             e.printStackTrace();
         }
