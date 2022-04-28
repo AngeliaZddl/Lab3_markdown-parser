@@ -30,7 +30,6 @@ public class MarkdownParse {
                 // Math.max(openBracket,closeBracket, openParen,closePare/n);
             }
             else if (openBracket+1 == closeBracket) {}
-            else if (openParen + 1 == closeParen) {}
             else if (openBracket == 0) {
                 System.out.println("zero");
                 toReturn.add(markdown.substring(openParen + 1, closeParen));
@@ -38,6 +37,10 @@ public class MarkdownParse {
             else if (closeBracket + 1 == openParen) {
                 // System.out.println("]( next to eachother");
                 toReturn.add(markdown.substring(openParen + 1, closeParen));
+            }
+	    else if (openParen+1 == closeParen) {
+                currentIndex = closeParen + 1;
+                continue;
             }
 
             // Cases gets triggered falsly. ONe is that it might trigger another case while it isn't a link. Faulty
