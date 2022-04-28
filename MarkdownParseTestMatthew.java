@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.io.File;
 
 
-public class MarkdownParseTest {
+public class MarkdownParseTestMatthew {
     @Test
     public void addition() {
         assertEquals(2, 1+1);
