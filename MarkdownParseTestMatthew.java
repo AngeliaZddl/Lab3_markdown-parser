@@ -7,6 +7,10 @@ import java.util.Scanner;
 import java.io.File;
 
 
+/**
+ * Matthew's test cases for MarkdownParser.java
+ * @author Matthew Vandenberg
+ */
 public class MarkdownParseTestMatthew {
     @Test
     public void addition() {
