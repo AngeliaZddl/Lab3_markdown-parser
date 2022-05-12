@@ -2,6 +2,7 @@ import static org.junit.Assert.*;
 import org.junit.*;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 
@@ -17,14 +18,13 @@ public class MarkdownParseTestMatthew {
         assertEquals(2, 1+1);
     }
 
-    @Test
-    public void testGetLinks() {
-        try {
-            List<String> actual = MarkdownParse.getLinks(new Scanner(new File("robert-test-1.md")));
-            List<String> expected = List.of("https://youtube.com");
-            assertEquals(expected, actual);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    @Test 
+    public void testTwoInOneLine() {
+        List<String> expected = new ArrayList<String>();
+        expected.add("https://something.com");
+        expected.add("some-thing.html");
+        assertEquals(expected, MarkdownParse.getLinks(new Scanner(new File("matt-test-1.md"))));
     }
+
+    
 }
