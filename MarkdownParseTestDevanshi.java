@@ -2,29 +2,57 @@ import static org.junit.Assert.*;
 import org.junit.*;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
-import java.util.Scanner;
-import java.io.File;
 
 public class MarkdownParseTestDevanshi {
 
-    /**
-     * Test cases for MarkdownParser.java : 
-     * @author Devanshi Jain
-     */
     @Test
-    public void addition() throws IOException {
-        assertEquals(2, 1 + 1);
+    public void testFile1() throws IOException {
+        String contents= Files.readString(Path.of("./test-file.md"));
+        List<String> expect = List.of("https://something.com", "some-page.html");
+        assertEquals(MarkdownParse.getLinks(contents), expect);
     }
 
     @Test
-    public void testfile() {
-        try {
-            List<String> actual = MarkdownParse.getLinks(new Scanner(new File("devanshi-test-1.md")));
-            List<String> expected = List.of("https://something.com", "some-thing.html");
-            assertEquals(expected, actual);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void testFile2() throws IOException {
+        String contents= Files.readString(Path.of("./test-file2.md"));
+        List<String> expect = List.of("https://something.com", "some-page.html");
+        assertEquals(MarkdownParse.getLinks(contents), expect);
     }
+
+    @Test
+    public void testSingleImage() throws IOException {
+        String contents= Files.readString(Path.of("./test-single-image.md"));
+        List<String> expect = List.of();
+        assertEquals(MarkdownParse.getLinks(contents), expect);
+    }
+
+    @Test
+    public void testLinkAtBeginning() {
+        String contents= "[link title](a.com)";
+        List<String> expect = List.of("a.com");
+        assertEquals(MarkdownParse.getLinks(contents), expect);
+    }
+
+    @Test
+    public void testSpaceInURL() {
+        String contents = "[title](space in-url.com)";
+        List<String> expect = List.of();
+        assertEquals(MarkdownParse.getLinks(contents), expect);
+    }
+    @Test
+    public void testSpaceAfterParen() {
+        String contents = "[title]( space-in-url.com)";
+        List<String> expect = List.of("space-in-url.com");
+        assertEquals(expect, MarkdownParse.getLinks(contents));
+    }
+    @Test
+    public void testSpaceBeforeParen() {
+        String contents = "[title]   (should-not-count.com)";
+        List<String> expect = List.of();
+        assertEquals(MarkdownParse.getLinks(contents), expect);
+    }
+    
 }
